@@ -1,0 +1,95 @@
+WEEK 1 DELIVERABLE: KEY COLUMN NOTES FOR CRMLS SOLD DATA
+
+1. Project Overview
+
+The objective of this project is to develop a machine learning model that predicts the final sale price (ClosePrice) of residential single-family homes in California using historical CRMLS transaction data. The dataset contains property characteristics, geographic information, school district data, taxes, fees, amenities, and transaction details.
+For this project, only records where PropertyType = Residential and PropertySubType = SingleFamilyResidence will be used. The project will follow a complete data science workflow including data exploration, preprocessing, feature engineering, model development, evaluation, and presentation.
+The final goal is to identify the key factors that influence housing prices and build a model capable of accurately estimating property values.
+
+2. Warning
+
+Per Aidan Nguyen on slack on 06/19/2025: 
+"Important reminder: Do not use ListPrice or OriginalListPrice as features in your machine learning models, as they introduce data leakage and can artificially inflate model performance."
+
+3. Dataset Summary
+
+Dataset Source: CRMLS Sold Property Data
+Property Type Used: Residential
+Property Subtype Used: SingleFamilyResidence
+Target Variable: ClosePrice
+Total Columns: 78
+
+4. Key Column Notes 
+
+(1). target Variable
+
+ClosePrice                                 Final sale price of the property. 
+--------------------------------------------------------------------------------------------------------------------------------
+(2). Property Characteristics
+
+LivingArea                                 Total livable area of the property in square feet.
+BedroomsTotal                              Total number of bedrooms.
+BathroomsTotalInteger                      Total number of bathrooms.
+YearBuilt                                  Year the property was built. Can be used to calculate property age.
+BuildingAreaTotal                          Total building area of the structure.
+LotSizeSquareFeet                          Total lot size measured in square feet.
+LotSizeAcres                               Total lot size measured in acres.
+Stories                                    Number of stories in the property.
+GarageSpaces                               Number of garage parking spaces.
+ParkingTotal                               Total parking spaces available.
+
+--------------------------------------------------------------------------------------------------------------------------------
+(3). Location Features
+
+Latitude                                   Latitude coordinate of the property location.
+Longitude                                  Longitude coordinate of the property location.
+City                                       City where the property is located.
+PostalCode                                 ZIP code of the property.
+CountyOrParish                             County where the property is located.
+MLSAreaMajor                               MLS-defined geographic area.
+ElementarySchoolDistrict                   Elementary school district associated with the property.
+MiddleOrJuniorSchoolDistrict               Middle school district associated with the property.
+HighSchoolDistrict                         High school district associated with the property.
+
+--------------------------------------------------------------------------------------------------------------------------------
+(4). Property Amenities
+
+PoolPrivateYN                              Indicates whether the property has a private pool.
+FireplaceYN                                Indicates whether the property has a fireplace.
+FireplacesTotal                            Number of fireplaces in the property.
+ViewYN                                     Indicates whether the property has a scenic view.
+WaterfrontYN                               Indicates whether the property is located on the waterfront.
+BasementYN                                 Indicates whether the property has a basement.
+NewConstructionYN                          Indicates whether the property is newly constructed.
+AttachedGarageYN                           Indicates whether the garage is attached to the home.
+
+--------------------------------------------------------------------------------------------------------------------------------
+(5). Transaction Information
+
+CloseDate                                  Date when the property sale was completed.
+DaysOnMarket                               Number of days the property was listed before being sold.
+ListingContractDate                        Date when the listing agreement became effective.
+PurchaseContractDate                       Date when the purchase contract was signed.
+MlsStatus                                  MLS listing status.
+
+--------------------------------------------------------------------------------------------------------------------------------
+(6). Financial Information
+
+TaxAnnualAmount                            Annual property tax amount.
+TaxYear                                    Tax year associated with the tax record.
+AssociationFee                             Homeowners Association (HOA) fee.
+AssociationFeeFrequency                    Frequency of HOA payments.
+
+--------------------------------------------------------------------------------------------------------------------------------
+(7). Property Type Filters
+
+PropertyType(=Residential)                 General property category. Only Residential properties are included in this project.
+PropertySubType(=SingleFamilyResidence)    Specific property category. Only SingleFamilyResidence properties are included in this project.
+
+5. Next Week: EDA
+• Load a minimum of 6 months of dataset into pandas.
+• Explore distributions of ClosePrice (the target variable), LivingArea, Bedrooms, Bathrooms, LotSize.
+• Restrict analysis to PropertyType = Residential and PropertySubType = SingleFamilyResidence.
+• Deliverable: Jupyter notebook 01_exploration.ipynb with basic EDA plots.
+
+
