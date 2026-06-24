@@ -1,0 +1,10 @@
+# Data files
+*.csv
+
+# Jupyter
+.ipynb_checkpoints/
+
+# MacOS
+.DS_Store
+.localized
+.CFUserTextEncoding
