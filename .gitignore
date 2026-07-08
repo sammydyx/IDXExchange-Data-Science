@@ -1,5 +1,6 @@
 # Data files
 *.csv
+!week3/cleaned_data.csv
 
 # Jupyter
 .ipynb_checkpoints/
