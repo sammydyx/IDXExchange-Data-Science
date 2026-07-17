@@ -5,6 +5,9 @@
 # Jupyter
 .ipynb_checkpoints/
 
+#file
+DistrictAreas2425/
+
 # MacOS
 .DS_Store
 .localized
