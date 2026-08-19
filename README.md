@@ -79,25 +79,35 @@ once on the same June 2026 held-out test set.
 
 ## Best Results
 
-The final test set contains **12,853 homes**. LightGBM produced the strongest
-overall result.
+The final model is the time-aware, log-target LightGBM pipeline in
+`final_improvement/`. It trains through April 2026, uses May 2026 for iteration
+selection, refits through May, and evaluates once on **12,858 June 2026 homes**.
+
+| Model | Test R² | RMSE | MAE | MAPE | MdAPE | RMSLE |
+|---|---:|---:|---:|---:|---:|---:|
+| Final log-target LightGBM | **0.8442** | **$606,434** | **$180,363** | **19.34%** | **7.77%** | **0.1834** |
+
+The final pipeline applies `log1p(ClosePrice)`, restores useful location
+categories, uses school-district boundaries, and adds time, property-age, HOA,
+garage, and ratio features. LightGBM handles categorical features directly.
+Final days-on-market and contract-to-close timing are excluded because those
+values are not known when estimating a home before its sale closes.
+
+### Historical Model Comparison
 
 | Model | Test R² | RMSE | MAE | MAPE | MdAPE |
 |---|---:|---:|---:|---:|---:|
-| LightGBM | **0.7650** | **$744,924** | **$236,661** | **23.86%** | **11.10%** |
-| XGBoost | 0.7622 | $749,317 | $271,761 | 28.18% | 14.05% |
+| Week 8 LightGBM | 0.7650 | $744,924 | $236,661 | 23.86% | 11.10% |
+| Week 8 XGBoost | 0.7622 | $749,317 | $271,761 | 28.18% | 14.05% |
 | Random Forest | 0.5034 | $1,182,835 | Not recorded | 19.69% | 9.65% |
 | Linear Regression | 0.4943 | $1,193,534 | Not recorded | 31.13% | 18.01% |
 
-Results are recorded in
+Historical results are recorded in
 [`week8/metrics_summary.csv`](week8/metrics_summary.csv) and
-[`week8/price_band_summary.csv`](week8/price_band_summary.csv).
-
-LightGBM also has the lowest MAE, MAPE, and MdAPE of the two final boosting
-models. Errors remain much larger for the highest-priced homes: rare luxury
-sales dominate RMSE and are the main limitation of the current model. Price-band
-R² values should be interpreted cautiously because each band has a much narrower
-target range than the full test set.
+[`week8/price_band_summary.csv`](week8/price_band_summary.csv). The final
+raw-data pipeline contains five more June records than the earlier cleaned test
+file, so the old and new results are informative but not an identical-row
+comparison.
 
 ## Repository Structure
 
@@ -113,7 +123,8 @@ target range than the full test set.
 |-- week7/outputs/                       # Predictions, metrics, importance
 |-- week8/06_evaluation.ipynb           # Overall and price-band evaluation
 |-- week8/metrics_summary.csv
-`-- week8/price_band_summary.csv
+|-- week8/price_band_summary.csv
+`-- final_improvement/07_improved_model.py
 ```
 
 ## Reproduce the Analysis
@@ -151,6 +162,12 @@ repository root, open each notebook, and run all cells in this order:
 7. `week6/rerun_additional_model.ipynb`
 8. `week7/05_advanced_models.ipynb`
 9. `week8/06_evaluation.ipynb`
+
+Run the improved experiment separately after the original workflow:
+
+```bash
+python final_improvement/07_improved_model.py
+```
 
 ```bash
 jupyter lab
