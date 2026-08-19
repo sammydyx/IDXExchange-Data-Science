@@ -176,15 +176,6 @@ jupyter lab
 If a notebook is executed non-interactively, set its working directory to the
 folder containing that notebook so its relative paths continue to resolve.
 
-## Launch the App
-
-An application entry point and a serialized final model are **not currently
-included in this repository**, so there is no valid app launch command yet.
-Before deployment, export the fitted LightGBM model together with its exact
-preprocessing schema and add the Week 9 application entry point (for example,
-`week9/app.py`). Once those files exist, this section should be updated with the
-tested installation and launch command rather than a placeholder command.
-
 ## Limitations
 
 - The model is trained on CRMLS records and may not generalize to transactions
